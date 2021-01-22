@@ -1,0 +1,28 @@
+image: hashicorp/terraform:latest
+
+stages:
+  - Terraform_Plan
+  - Terraform_Apply
+
+before_script:
+  - terraform --version
+  - terraform init
+
+Plan:
+  stage: Terraform_Plan
+  allow_failure: false
+  script:
+  - echo "dry run"
+  - terraform plan
+
+Apply:
+  stage: Terraform_Apply
+  allow_failure: false
+  environment:
+    name: production
+  when: manual
+  only:
+    - master
+  script:
+  - echo "provision resources"
+  - terraform apply -auto-approve
