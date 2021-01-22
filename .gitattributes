@@ -1,2 +1,3 @@
-*    text=auto
-*.tf linguist-detectable=true
+*.tf linguist-vendored=true
+*.html linguist-vendored=false
+*.htm linguist-vendored=false
